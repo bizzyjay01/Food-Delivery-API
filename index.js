@@ -4,7 +4,9 @@ const dotenv = require("dotenv").config()
 const authRouter = require("./routes/authRoutes")
 const restaurantRouter = require("./routes/restaurantRoutes")
 const menuRouter = require("./routes/menuRoutes")
-
+const orderRouter = require("./routes/orderRoutes")
+const deliveryRouter = require("./routes/deliveryPersonnelRoutes")
+const trackDeliveryRouter = require("./routes/trackDeliveryRoutes")
 
 const app = express()
 app.use(express.json())
@@ -24,3 +26,6 @@ app.get("/", (req,res)=>{
 app.use("/api", authRouter)
 app.use("/api", restaurantRouter)
 app.use("/api", menuRouter)
+app.use("/api", orderRouter)
+app.use("/api", deliveryRouter)
+app.use("/api", trackDeliveryRouter)

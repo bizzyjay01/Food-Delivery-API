@@ -6,6 +6,8 @@ const menuSchema = new mongoose.Schema(
 		description: { type: String },
 		price: { type: Number, required: true },
 		availability: { type: Boolean, default: true },
+
+		restaurantId:{type: mongoose.Schema.Types.ObjectId, ref:'Restaurants', required:true}
 	},
 	{
 		timestamps: true,

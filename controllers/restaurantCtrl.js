@@ -39,8 +39,6 @@ const createRestaurant = async (req, res) => {
 
 const getRestaurants = async (req, res) => {
 	const allRestaurants = await Restaurants.find()
-		.populate("menu", "itemName description price availability")
-		.exec();
 
 	return res.status(200).json({
 		message: "Successful",
@@ -48,6 +46,18 @@ const getRestaurants = async (req, res) => {
 		allRestaurants,
 	});
 };
+
+const getOneRestaurant = async (req, res)=>{
+	const {id}=req.params
+
+	const restaurant = await Restaurants.findById(id)
+
+	if(!restaurant) {
+		return res.status(404).json({message: "Restaurant not found!"})
+	}
+
+	return res.status(200).json({message: "Successful", restaurant})
+}
 
 const updateRestaurant = async (req, res) => {
 	try {
@@ -87,4 +97,4 @@ const deleteRestaurant = async (req, res) => {
 	}
 };
 
-module.exports = { createRestaurant, getRestaurants, updateRestaurant, deleteRestaurant };
+module.exports = { createRestaurant, getRestaurants, updateRestaurant, deleteRestaurant, getOneRestaurant };

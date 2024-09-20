@@ -10,7 +10,7 @@ const restaurantSchema = new mongoose.Schema(
 		},
         menu:[{type: mongoose.Schema.Types.ObjectId, ref:'Menus'}],
 
-        owner:[{type: mongoose.Schema.Types.ObjectId, ref:'Users', required:true}]
+        owner:{type: mongoose.Schema.Types.ObjectId, ref:'Users', required:true}
 	},
 	{
 		timestamps: true,
