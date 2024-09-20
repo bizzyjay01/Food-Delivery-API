@@ -3,7 +3,6 @@ const {
 	registerFxn,
 	activateFxn,
 	loginfxn,
-	authenticateUser,
 } = require("../controllers/authCtrl");
 const {
 	validateRegistration,
@@ -20,8 +19,6 @@ router.post("/login", validateLogin, loginfxn);
 
 // activation endpoint
 router.get("/activate/:token", activateFxn);
-
-router.post("/auth", validateToken, authenticateUser);
 
 
 module.exports = router;

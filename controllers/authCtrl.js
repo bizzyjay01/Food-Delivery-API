@@ -113,15 +113,10 @@ const loginfxn = async (req, res) => {
 	}
 };
 
-const authenticateUser = async (req,res)=>{
-	res.status(200).json({message:"Successful", user:req.user})
-}
-
 
 
 module.exports = {
 	registerFxn,
 	activateFxn,
 	loginfxn,
-	authenticateUser
 };
