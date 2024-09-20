@@ -12,9 +12,9 @@ const router = express.Router();
 router.post("/create-restaurant", validateToken,validateRestaurant, createRestaurant);
 
 // Read Restaurant
-router.get("/all-restaurants", getRestaurants)
+router.get("/all-restaurants", validateToken, getRestaurants)
 
-router.get("/restaurant/:id", getOneRestaurant)
+router.get("/restaurant/:id", validateToken, getOneRestaurant)
 
 // Update Restaurant
 router.put("/edit-restaurant/:id", validateToken,authorizeRestaurantOwner, updateRestaurant)

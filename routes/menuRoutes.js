@@ -9,7 +9,7 @@ const router = express.Router();
 router.post("/restaurants/:restaurantId/menu", validateToken, validateMenu, createMenu);
 
 // Read Menus
-router.get("/all-menus", getMenus)
+router.get("/all-menus", validateToken, getMenus)
 router.get("/menu/:id",validateToken, getOneMenu)
 
 // Update Menu
