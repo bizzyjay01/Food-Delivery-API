@@ -20,15 +20,15 @@ const createMenu = async (req, res) => {
 			description,
 			price,
 			availability,
-			restaurantId
+			restaurantId,
 		});
 
 		await newMenu.save();
 
 		// Add the new menu item to the restaurant's menu
 		// console.log(newMenu)
-		
-		restaurant.menu.push(newMenu)
+
+		restaurant.menu.push(newMenu);
 
 		await restaurant.save();
 
@@ -42,34 +42,41 @@ const createMenu = async (req, res) => {
 			message: "Menu item created successfully",
 			menu: newMenu,
 		});
-		
 	} catch (error) {
 		return res.status(500).json({ message: error.message });
 	}
 };
 
 const getMenus = async (req, res) => {
-	const allMenus = await Menus.find()
+	try {
+		const allMenus = await Menus.find();
 
-	return res.status(200).json({
-		message: "Successful",
-		count: allMenus.length,
-		allMenus,
-	});
+		return res.status(200).json({
+			message: "Successful",
+			count: allMenus.length,
+			allMenus,
+		});
+	} catch (error) {
+		return res.status(500).json({ message: error.message });
+	}
 };
 
-const getOneMenu = async (req, res)=>{
-	const {id}=req.params
+const getOneMenu = async (req, res) => {
+	try {
+		const { id } = req.params;
 
-	const menu = await Menus.findById(id)
+		const menu = await Menus.findById(id);
 
-	if(!menu) {
-		return res.status(404).json({message: "Menu not found!"})
+		if (!menu) {
+			return res.status(404).json({ message: "Menu not found!" });
+		}
+
+		return res.status(200).json({ message: "Successful", menu });
+		
+	} catch (error) {
+		return res.status(500).json({ message: error.message });
 	}
-
-	return res.status(200).json({message: "Successful", menu})
-}
-
+};
 
 const updateMenu = async (req, res) => {
 	try {
@@ -82,8 +89,9 @@ const updateMenu = async (req, res) => {
 			{ new: true }
 		);
 
-		return res.status(200).json({ message: "Menu updated successfully", updatedMenu });
-
+		return res
+			.status(200)
+			.json({ message: "Menu updated successfully", updatedMenu });
 	} catch (error) {
 		return res.status(500).json({ message: error.message });
 	}
@@ -93,17 +101,15 @@ const deleteMenu = async (req, res) => {
 	try {
 		const { id } = req.params;
 
-		const menu = await Menus.findById(id)
+		const menu = await Menus.findById(id);
 		const deletedMenu = await Menus.findByIdAndDelete(id);
 
-		
-
-		return res.status(200).json({ message: `${menu.itemName} Menu successfully deleted`});
-
+		return res
+			.status(200)
+			.json({ message: `${menu.itemName} Menu successfully deleted` });
 	} catch (error) {
 		return res.status(500).json({ message: error.message });
 	}
 };
-
 
 module.exports = { createMenu, getMenus, getOneMenu, updateMenu, deleteMenu };
