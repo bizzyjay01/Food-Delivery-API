@@ -7,7 +7,7 @@ const { validateDeliveryPersonnel } = require("../middleware/deliveryPersonnelVa
 const router = express.Router()
 
 // Create delivery personnel
-router.post("/delivery-personnel", validateToken,validateDeliveryPersonnel, createDeliveryPersonnel)
+router.post("/delivery-personnel", validateToken, validateDeliveryPersonnel, createDeliveryPersonnel)
 
 // Assign delivery personnel to order
 router.post("/orders/assign-delivery", validateToken, assignDeliveryPersonnel)
