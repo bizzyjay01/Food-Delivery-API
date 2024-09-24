@@ -82,7 +82,7 @@ const generateCertificate = async (req, res) => {
 				align: "center",
 			});
 
-		
+		jumpLine(doc, 1);
 
 		doc
 			.fontSize(20)
