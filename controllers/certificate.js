@@ -21,7 +21,7 @@ const generateCertificate = async (req, res) => {
 
 		const distanceMargin = 18;
 		doc
-			.fillAndStroke("#2a9d8f")
+			.fillAndStroke("#2fb8500")
 			.lineWidth(20)
 			.lineJoin("round")
 			.rect(
@@ -58,7 +58,7 @@ const generateCertificate = async (req, res) => {
 		doc
 			.fontSize(25)
 			.fill("#0d1b2a")
-			.text("CERTIFICATE OF PARTICIPATION", {
+			.text("CERTIFICATE OF COMPLETION", {
 				align: "center",
 			});
 
