@@ -17,6 +17,8 @@ router.post("/register", validateRegistration, registerFxn);
 
 router.post("/login", validateLogin, loginfxn);
 
+
+
 // activation endpoint
 router.get("/activate/:token", activateFxn);
 

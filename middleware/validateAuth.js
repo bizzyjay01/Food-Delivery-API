@@ -10,14 +10,14 @@ const validateToken = async (req, res, next) => {
 		const decoded = jwt.verify(token, process.env.ACCESS_TOKEN);
 
 		if (!decoded) {
-			return res.status(401).json({ message: "Invalid login details" });
+			return res.status(400).json({ message: "Invalid login details" });
 		}
 		// console.log({decoded});
 
 		const user = await Users.findOne({ _id: decoded.user._id });
 
 		if (!user) {
-			return res.status(401).json({ message: "User account not found" });
+			return res.status(404).json({ message: "User account not found" });
 		}
 
 		req.user = user;

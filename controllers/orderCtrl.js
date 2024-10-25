@@ -11,7 +11,7 @@ const placeOrder = async (req, res) => {
 		restaurant = await Restaurants.findById(restaurantId);
 
 		if (!restaurant) {
-			return res.status(400).json({ message: "Restaurant not found" });
+			return res.status(404).json({ message: "Restaurant not found" });
 		}
 
 		// Calculate total cost and validate menu items

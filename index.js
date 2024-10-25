@@ -8,6 +8,8 @@ const orderRouter = require("./routes/orderRoutes")
 const deliveryRouter = require("./routes/deliveryPersonnelRoutes")
 const trackDeliveryRouter = require("./routes/trackDeliveryRoutes")
 const certificateRouter = require("./routes/certificateRoute")
+const userRouter = require("./routes/userRoute")
+
 
 const app = express()
 app.use(express.json())
@@ -25,6 +27,7 @@ app.get("/", (req,res)=>{
 })
 
 app.use("/api", authRouter)
+app.use("/api", userRouter)
 app.use("/api", restaurantRouter)
 app.use("/api", menuRouter)
 app.use("/api", orderRouter)
